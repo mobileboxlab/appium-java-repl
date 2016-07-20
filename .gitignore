@@ -1,6 +1,7 @@
 target
 test-output
 lib
+bin
 .classpath
 .project
 .settings
