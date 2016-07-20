@@ -141,7 +141,7 @@
                             <div class="col-xs-12" style="height:50px;"></div>
                             <h3 id="gettingStarted">Getting Started</h3>
                             <div class="col-xs-12" style="height:50px;"></div>
-                            <p><a href="https://github.com/mobileboxlab/appium-java-repl/releases">Download</a> the latest version (requires JDK 1.8 or newer) and install
+                            <p><a href="http://repl.ukelelestudio.com/appium-repl.jar">Download</a> the latest version (requires JDK 1.8 or newer) and install
                                 <a href="https://github.com/appium/appium">Appium</a>
                             </p>
                         </div>
