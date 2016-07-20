@@ -1,0 +1,17 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+matrix:
+  fast_finish: true
+
+before_install:
+  - mkdir lib/	
+  - wget -P lib/ http://albertlatacz.published.s3.amazonaws.com/javarepl/javarepl.jar
+  - mvn install:install-file -Dfile=lib/javarepl.jar -DgroupId=com.javarepl -DartifactId=javarepl -Dversion=1.0.1 -Dpackaging=jar
+
+script:
+  - "mvn clean install"
+
+sudo: false
