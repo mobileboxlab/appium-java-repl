@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mobilebox.appium.repl</groupId>
 	<artifactId>appium-repl</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Appium REPL</name>
 	<description>Simple Java REPL (Read-eval-print Loop) for controlling mobile apps through Appium</description>
 
@@ -119,4 +119,5 @@
 
 
 
+	<url>https://mobileboxlab.github.io/appium-java-rep</url>
 </project>
