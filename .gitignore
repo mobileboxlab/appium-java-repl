@@ -1,0 +1,9 @@
+target
+test-output
+lib
+bin
+.classpath
+.project
+.settings
+dependency-reduced-pom.xml
+index.html~
