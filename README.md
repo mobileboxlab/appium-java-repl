@@ -1,6 +1,6 @@
 # Appium Java REPL
 
-[![Build Status](https://travis-ci.org/mobileboxlab/appium-java-repl.svg?branch=master)](https://travis-ci.org/mobileboxlab/appium-java-repl)
+[![Build Status](https://travis-ci.org/mobileboxlab/appium-java-repl.svg?branch=master)](https://travis-ci.org/mobileboxlab/appium-java-repl) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1d96b6e9cec343cabeb65b8e86cc74cc)](https://www.codacy.com/app/dev-github/appium-java-repl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mobileboxlab/appium-java-repl&amp;utm_campaign=Badge_Grade)
 
 Simple Java REPL for controlling mobile apps through Appium.
 
