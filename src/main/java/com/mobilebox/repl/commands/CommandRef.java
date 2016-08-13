@@ -8,9 +8,9 @@ import java.lang.annotation.*;
 @Target(value = ElementType.METHOD)
 public @interface CommandRef {
 
-	public String desc() default "";
+  public String desc() default "";
 
-	public String[] params() default "";
+  public String[] params() default "";
 
-	public String ret() default "";
+  public String ret() default "";
 }

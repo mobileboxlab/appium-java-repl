@@ -30,158 +30,181 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 
-@SuppressWarnings({ "unchecked","rawtypes" })
+@SuppressWarnings({"unchecked", "rawtypes"})
 public abstract class AppiumCommands<T extends AppiumDriver, E extends WebElement> {
 
-	private String udid;
-	
-	private AppiumDriver<E> driver;
+  private String udid;
+  
+  private String app;
 
-	abstract void start(String deviceName, String udid, String app,
-			String server, String timeout) throws CommandsException, MalformedURLException;
+  private AppiumDriver<E> driver;
+
+  abstract void start(String deviceName, String udid, String app, String server, String timeout)
+      throws CommandsException, MalformedURLException;
 
 
-	@CommandRef(desc="Start a new Appium session from ${user.home}/appium.txt file")
-	public void start() throws MalformedURLException, CommandsException {
-		ConfigCapabilities config = ConfigFactory.create(ConfigCapabilities.class);		
-		DesiredCapabilities capabilities = new DesiredCapabilities();
+  @CommandRef(desc = "Start a new Appium session from ${user.home}/appium.txt file")
+  public void start() throws MalformedURLException, CommandsException {
+    ConfigCapabilities config = ConfigFactory.create(ConfigCapabilities.class);
+    DesiredCapabilities capabilities = new DesiredCapabilities();
 
-		capabilities.setCapability(DEVICE_NAME, config.deviceName());		
-		capabilities.setCapability(NEW_COMMAND_TIMEOUT, config.cmdTimeout());
-		capabilities.setCapability(APP, config.app());
-		
-		if (!config.udid().isEmpty()) {
-			capabilities.setCapability(UDID, config.udid());
-			setDeviceID(config.udid());
-		}
-		
-		URL urlServer = new URL(config.appiumServer());
-				
-		switch(config.platformName().toLowerCase()){
-			case "android":
-				capabilities.setCapability(PLATFORM_NAME,"Android");
-				setDriver(new AndroidDriver(urlServer, capabilities));
-				break;
-			case "ios":
-				capabilities.setCapability(PLATFORM_NAME,"iOS");
-				setDriver(new IOSDriver(urlServer, capabilities));
-				break;
-			default:
-			throw new RuntimeException(
-					"Failed to start session. Please check the appium.txt file. Actual configuration: "
-							+ config.toString());		
-		}		
-	}	
-	
-	protected T getDriver() {
-		if (driver == null) {
-			throw new RuntimeException(
-					"The driver is null. Please start a new session");
-		}
-		return (T) driver;
-	};
-	
-	protected String getDeviceID() {
-		return udid;
-	};
+    capabilities.setCapability(DEVICE_NAME, config.deviceName());
+    capabilities.setCapability(NEW_COMMAND_TIMEOUT, config.cmdTimeout());
+    capabilities.setCapability(APP, config.app());
+    setApp(config.app());
 
-	protected void setDriver(AppiumDriver<E> driver) {
-		this.driver = driver;
-	}
-	
-	protected void setDeviceID(String id) {
-		this.udid = id;
-	};
-	
-	@CommandRef(desc = "Terminates the driver instance.")
-	public void quit() {
-		((AppiumDriver<E>) getDriver()).quit();
-	};
+    if (!config.udid().isEmpty()) {
+      capabilities.setCapability(UDID, config.udid());
+      setDeviceID(config.udid());
+    }
 
-	@CommandRef(
-	desc = "Find elements by ID.", 
-	params = { "id - The element id" }, 
-	ret = "A list of elements. This list is empty when no elements are found.")
-	public List<E> byId(String id) {
-		return  findElements(By.id(id));
-	}
+    URL urlServer = new URL(config.appiumServer());
 
-	@CommandRef(
-	desc = "Find elements by class name.", 
-	params = { "className - The class property (for example, 'android.widget.Button')" }, 
-	ret = "A list of elements. This list is empty when no elements are found.")
-	public List<E> byClassName(String className){
-		return  findElements(By.className(className));
-	}
+    switch (config.platformName().toLowerCase()) {
+      case "android":
+        capabilities.setCapability(PLATFORM_NAME, "Android");
+        setDriver(new AndroidDriver(urlServer, capabilities));
+        break;
+      case "ios":
+        capabilities.setCapability(PLATFORM_NAME, "iOS");
+        setDriver(new IOSDriver(urlServer, capabilities));
+        break;
+      default:
+        throw new RuntimeException(
+            "Failed to start session. Please check the appium.txt file. Actual configuration: "
+                + config.toString());
+    }
+  }
 
-	@CommandRef(
-	desc = "Find elements by Xpath.", 
-	params = { "xpath -  A Xpath expression" }, 
-	ret = "A list of elements. This list is empty when no elements are found.")
-	public List<E> byXpath(String xpath){
-		return findElements(By.xpath(xpath));
-	}
-	
-	@CommandRef(desc = "Move back")
-	public void back() {
-		((AppiumDriver<E>) getDriver()).navigate().back();
-	};
+  protected T getDriver() {
+    if (driver == null) {
+      throw new RuntimeException("The driver is null. Please start a new session");
+    }
+    return (T) driver;
+  };
 
-	@CommandRef(
-	desc = "Prints the current orientation of a mobile devices desktop.")
-	public void getOrientation() {
-		console(((AppiumDriver<E>) getDriver()).getOrientation().toString());
-	}
+  protected String getDeviceID() {
+    return udid;
+  };
 
-	@CommandRef(desc = "Prints the capabilities of the current driver.")
-	public void getCapabilities() {
-		console(((AppiumDriver<E>) getDriver()).getCapabilities().toString());
-	}
+  protected String getApp() {
+    return app;
+  };
+  
+  protected void setDriver(AppiumDriver<E> driver) {
+    this.driver = driver;
+  }
 
-	@CommandRef(
-	desc = "Retrieves a XML view of the current screen.",
-	ret = "A XML view of the current screen.")
-	public String getSource() throws IOException, DocumentException {
-		return prettyXML(((AppiumDriver<E>) getDriver()).getPageSource());
-	}
-	
-	@CommandRef(desc = "Prints the ID of this session.")
-	public void getSessionId() {
-		console(((AppiumDriver<E>) getDriver()).getSessionId().toString());
-	};
-	
-	@CommandRef(desc = "Prints all defined Strings from an app for the default language.")
-	public void getAppStringMap() {
-		console(((AppiumDriver<E>) getDriver()).getAppStringMap().toString());
-	};
-	
-	@CommandRef(desc = "Prints the device date and time for both iOS and Android devices.")
-	public void getDeviceTime() {
-		console(((AppiumDriver<E>) getDriver()).getDeviceTime());
-	};
+  protected void setDeviceID(String id) {
+    this.udid = id;
+  };
+  
+  protected void setApp(String app) {
+    this.app = app;
+  };
 
-	@CommandRef(desc = "Hides the keyboard if it is showing.")
-	public void hideKeyboard() {
-		((AppiumDriver<E>) getDriver()).hideKeyboard();
-	};
-	
-	protected List<E> findElements(By locator) {
-		List<E> elements = (List<E>) ((T) getDriver()).findElements(locator);
-		console("Found: " + elements.size() + " elements" + SEPARATOR);
-		for (E element : elements) {
-			Point location = element.getLocation();
-			Dimension size = element.getSize();
-			console("---> Text: " + element.getText());
-			console("---> TagName: " + element.getTagName());
-			console("---> Enabled: " + element.isEnabled());
-			console("---> Selected: " + element.isSelected());
-			console("---> Displayed: " + element.isDisplayed());
-			console("---> Location: [X=" + location.getX() + " Y="
-					+ location.getY() + "]");
-			console("---> Size: [Height=" + size.getHeight() + " Width="
-					+ size.getWidth() + "]" + SEPARATOR);
-		}
-		return elements;
-	}
+  @CommandRef(desc = "Terminates the driver instance.")
+  public void quit() {
+    ((AppiumDriver<E>) getDriver()).quit();
+  };
+
+  @CommandRef(desc = "Find elements by ID.", params = {"id - The element id"},
+      ret = "A list of elements. This list is empty when no elements are found.")
+  public List<E> byId(String id) {
+    return findElements(By.id(id));
+  }
+
+  @CommandRef(desc = "Find elements by class name.",
+      params = {"className - The class property (for example, 'android.widget.Button')"},
+      ret = "A list of elements. This list is empty when no elements are found.")
+  public List<E> byClassName(String className) {
+    return findElements(By.className(className));
+  }
+
+  @CommandRef(desc = "Find elements by Xpath.", params = {"xpath -  A Xpath expression"},
+      ret = "A list of elements. This list is empty when no elements are found.")
+  public List<E> byXpath(String xpath) {
+    return findElements(By.xpath(xpath));
+  }
+
+  @CommandRef(desc = "Move back")
+  public void back() {
+    ((AppiumDriver<E>) getDriver()).navigate().back();
+  };
+
+  @CommandRef(desc = "Prints the current orientation of a mobile devices desktop.")
+  public void getOrientation() {
+    console(((AppiumDriver<E>) getDriver()).getOrientation().toString());
+  }
+
+  @CommandRef(desc = "Prints the capabilities of the current driver.")
+  public void getCapabilities() {
+    console(((AppiumDriver<E>) getDriver()).getCapabilities().toString());
+  }
+
+  @CommandRef(desc = "Retrieves a XML view of the current screen.",
+      ret = "A XML view of the current screen.")
+  public String getSource() throws IOException, DocumentException {
+    return prettyXML(((AppiumDriver<E>) getDriver()).getPageSource());
+  }
+
+  @CommandRef(desc = "Prints the ID of this session.")
+  public void getSessionId() {
+    console(((AppiumDriver<E>) getDriver()).getSessionId().toString());
+  };
+
+  @CommandRef(desc = "Prints all defined Strings from an app for the default language.")
+  public void getAppStringMap() {
+    console(((AppiumDriver<E>) getDriver()).getAppStringMap().toString());
+  };
+
+  @CommandRef(desc = "Prints the device date and time for both iOS and Android devices.")
+  public void getDeviceTime() {
+    console(((AppiumDriver<E>) getDriver()).getDeviceTime());
+  };
+
+  @CommandRef(desc = "Prints the current context.")
+  public void getContext() {
+    console(((AppiumDriver<E>) getDriver()).getContext());
+  };
+
+  @CommandRef(desc = "Prints the available contexts.")
+  public void getContextHandles() {
+    ((AppiumDriver<E>) getDriver()).getContextHandles().forEach(item -> console(item));
+  };
+
+  @CommandRef(desc = "Switch to a new context.",
+      params = {"context - The context name."})
+  public void context(String context) {
+    ((AppiumDriver<E>) getDriver()).context(context);
+  };
+  
+  @CommandRef(desc = "Prints the session details.")
+  public void getSessionDetails() {
+    console(((AppiumDriver<E>) getDriver()).getSessionDetails().toString());
+  };
+
+  @CommandRef(desc = "Hides the keyboard if it is showing.")
+  public void hideKeyboard() {
+    ((AppiumDriver<E>) getDriver()).hideKeyboard();
+  };
+
+  protected List<E> findElements(By locator) {
+    List<E> elements = (List<E>) ((T) getDriver()).findElements(locator);
+    console("Found: " + elements.size() + " elements" + SEPARATOR);
+    for (E element : elements) {
+      Point location = element.getLocation();
+      Dimension size = element.getSize();
+      console("---> Text: " + element.getText());
+      console("---> TagName: " + element.getTagName());
+      console("---> Enabled: " + element.isEnabled());
+      console("---> Selected: " + element.isSelected());
+      console("---> Displayed: " + element.isDisplayed());
+      console("---> Location: [X=" + location.getX() + " Y=" + location.getY() + "]");
+      console(
+          "---> Size: [Height=" + size.getHeight() + " Width=" + size.getWidth() + "]" + SEPARATOR);
+    }
+    return elements;
+  }
 
 }
