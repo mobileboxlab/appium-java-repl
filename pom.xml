@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mobilebox.appium.repl</groupId>
 	<artifactId>appium-repl</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<name>Appium REPL</name>
 	<description>Simple Java REPL (Read-eval-print Loop) for controlling mobile apps through Appium</description>
 
@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
-			<version>4.1.1</version>
+			<version>5.0.0-BETA2</version>
 		</dependency>
 
 		<dependency>
@@ -40,7 +40,6 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>com.github.vidstige</groupId>
