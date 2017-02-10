@@ -27,7 +27,7 @@ public class IOSCommands extends AppiumCommands<IOSDriver, IOSElement> {
       "app - The absolute local path or remote http URL to an .ipa or .apk",
       "server -  The Appium server URL",
       "timeout - How long (in seconds) Appium will wait for a new command from the client before assuming the client quit and ending the session."})
-  void start(String deviceName, String udid, String app, String server, String timeout)
+  public void start(String deviceName, String udid, String app, String server, String timeout)
       throws CommandsException, MalformedURLException {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability(PLATFORM_NAME, IOS);
@@ -35,7 +35,7 @@ public class IOSCommands extends AppiumCommands<IOSDriver, IOSElement> {
     capabilities.setCapability(NEW_COMMAND_TIMEOUT, timeout);
     capabilities.setCapability(UDID, udid);
     capabilities.setCapability(APP, app);
-    setDriver(new IOSDriver<>(new URL(server), capabilities));
+    setDriver(new IOSDriver<IOSElement>(new URL(server), capabilities));
     setApp(app);
   }
 
