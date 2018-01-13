@@ -29,7 +29,6 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import com.mobilebox.repl.Appium;
 import com.mobilebox.repl.config.ConfigCapabilities;
 import com.mobilebox.repl.exceptions.CommandsException;
 
