@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mobilebox.appium.repl</groupId>
 	<artifactId>appium-repl</artifactId>
-	<version>0.2.0-BETA1</version>
+	<version>1.0.0</version>
 	<name>Appium REPL</name>
 	<description>Simple Java REPL (Read-eval-print Loop) for controlling mobile apps through Appium</description>
 
@@ -26,13 +26,13 @@
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
-			<version>5.0.0-BETA2</version>
+			<version>6.0.0-BETA2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.javarepl</groupId>
 			<artifactId>javarepl</artifactId>
-			<version>1.0.1</version>
+			<version>428</version>
 		</dependency>
 
 		<dependency>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>com.github.vidstige</groupId>
 			<artifactId>jadb</artifactId>
-			<version>94ebf38</version>
+			<version>v1.0.1</version>
 		</dependency>
 
 		<dependency>
@@ -64,7 +64,7 @@
 		<dependency>
 			<groupId>org.aeonbits.owner</groupId>
 			<artifactId>owner</artifactId>
-			<version>1.0.8</version>
+			<version>1.0.9</version>
 		</dependency>
 
 		<dependency>
@@ -77,6 +77,19 @@
 			<groupId>com.jcabi</groupId>
 			<artifactId>jcabi-xml</artifactId>
 			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.zeroturnaround</groupId>
+			<artifactId>zt-zip</artifactId>
+			<version>1.9</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.cedarsoftware</groupId>
+			<artifactId>json-io</artifactId>
+			<version>4.5.0</version>
 		</dependency>
 
 	</dependencies>

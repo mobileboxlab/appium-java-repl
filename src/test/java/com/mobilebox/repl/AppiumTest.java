@@ -27,25 +27,25 @@ public class AppiumTest {
 
   @Test
   public void commandsAppiumTest() {
-    Appium.commands_appium();
+    Appium.appium();
     assertThat(outContent.toString()).contains("Available Commands for Appium");
   }
 
   @Test
   public void commandsAndroidTest() {
-    Appium.commands_android();
+    Appium.android();
     assertThat(outContent.toString()).contains("Available Commands for Android");
   }
 
   @Test
   public void commandsAndroidDeviceTest() {
-    Appium.commands_android_device();
+    Appium.android_device();
     assertThat(outContent.toString()).contains("Available Commands for AndroidDevice");
   }
 
   @Test
   public void commandsIOSTest() {
-    Appium.commands_ios();
+    Appium.ios();
     assertThat(outContent.toString()).contains("Available Commands for IOS");
   }
 }

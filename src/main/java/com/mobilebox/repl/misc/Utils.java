@@ -1,6 +1,7 @@
 package com.mobilebox.repl.misc;
 
 import static com.mobilebox.repl.commands.CommandsDoc.SEPARATOR;
+import com.cedarsoftware.util.io.JsonWriter;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -11,10 +12,6 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 public class Utils {
 
@@ -38,12 +35,22 @@ public class Utils {
   }
 
   /**
+   * Pretty-Print JSON.
+   * 
+   * @param json The JSON
+   * @return A beautiful JSON
+   */
+  public static String prettyJson(final Object json) {
+    return JsonWriter.formatJson(json.toString());
+  }
+
+  /**
    * Prints a String on console and then terminate the line.
    * 
-   * @param msg The String to be printed.
+   * @param msg The object to be printed.
    */
-  public static void console(final String msg) {
-    System.out.println(msg);
+  public static void console(final Object msg) {
+    System.out.println(msg.toString());
   }
 
   public static void consoleTitle(final String msg) {

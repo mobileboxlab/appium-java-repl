@@ -57,12 +57,12 @@ public class AndroidDeviceCommands {
   }
 
   @CommandRef(desc = "Prints the Android device serial.")
-  public void getSerial() {
+  public void serial() {
     console("Android Device ID: " + serial);
   }
 
   @CommandRef(desc = "Set brightness.", params = {"brightness - Value into the range [0,255]."})
-  public void setBrightness(final int brightness) throws IOException, JadbException {
+  public void brightness(final int brightness) throws IOException, JadbException {
     device.executeShell("settings", "put", "system", "screen_brightness",
         Integer.toString(brightness));
   }
@@ -83,55 +83,55 @@ public class AndroidDeviceCommands {
   }
 
   @CommandRef(desc = "Prints the device Android version.")
-  public void getVersion() throws IOException, JadbException {
-    console("Android Version Release: " + getProp("ro.build.version.release"));
+  public void version() throws IOException, JadbException {
+    console("Android Version Release: " + prop("ro.build.version.release"));
   }
 
   @CommandRef(desc = "Prints device information related to Dalvik VM.")
-  public void getVMInfo() throws IOException, JadbException {
+  public void vm() throws IOException, JadbException {
     consoleTitle("Device Dalvik VM properties");
     for (Entry<String, String> entry : DALVIK_VM.entrySet()) {
-      console(entry.getKey() + " = " + getProp(entry.getValue()));
+      console(entry.getKey() + " = " + prop(entry.getValue()));
     }
   }
 
   @CommandRef(desc = "Prints device information related to DHCP.")
-  public void getDHCPInfo() throws IOException, JadbException {
+  public void dhcp() throws IOException, JadbException {
     consoleTitle("Device DHCP properties");
     for (Entry<String, String> entry : DHCP.entrySet()) {
-      console(entry.getKey() + " = " + getProp(entry.getValue()));
+      console(entry.getKey() + " = " + prop(entry.getValue()));
     }
   }
 
   @CommandRef(desc = "Prints device information related to GSM.")
-  public void getGsmInfo() throws IOException, JadbException {
+  public void gsm() throws IOException, JadbException {
     consoleTitle("Device GSM properties");
     for (Entry<String, String> entry : GSM.entrySet()) {
-      console(entry.getKey() + " = " + getProp(entry.getValue()));
+      console(entry.getKey() + " = " + prop(entry.getValue()));
     }
   }
 
   @CommandRef(desc = "Prints device information related to Net.")
-  public void getNetInfo() throws IOException, JadbException {
+  public void net() throws IOException, JadbException {
     consoleTitle("Device Net properties");
     for (Entry<String, String> entry : NET.entrySet()) {
-      console(entry.getKey() + " = " + getProp(entry.getValue()));
+      console(entry.getKey() + " = " + prop(entry.getValue()));
     }
   }
 
   @CommandRef(desc = "Prints device information related to product.")
-  public void getProductInfo() throws IOException, JadbException {
+  public void productInfo() throws IOException, JadbException {
     consoleTitle("Device Product properties");
     for (Entry<String, String> entry : PRODUCT.entrySet()) {
-      console(entry.getKey() + " = " + getProp(entry.getValue()));
+      console(entry.getKey() + " = " + prop(entry.getValue()));
     }
   }
 
   @CommandRef(desc = "Prints device information related to Wifi.")
-  public void getWifiInfo() throws IOException, JadbException {
+  public void wifi() throws IOException, JadbException {
     consoleTitle("Device WIFI properties");
     for (Entry<String, String> entry : WIFI.entrySet()) {
-      console(entry.getKey() + " = " + getProp(entry.getValue()));
+      console(entry.getKey() + " = " + prop(entry.getValue()));
     }
   }
 
@@ -141,22 +141,22 @@ public class AndroidDeviceCommands {
   }
 
   @CommandRef(desc = "Prints all packages on the device.")
-  public void getPackages() throws IOException, JadbException {
+  public void packages() throws IOException, JadbException {
     console(getResponse(device.executeShell("pm", "list", "packages")));
   }
 
   @CommandRef(desc = "Prints battery status.")
-  public void getBattery() throws IOException, JadbException {
+  public void battery() throws IOException, JadbException {
     console(getResponse(device.executeShell("dumpsys", "battery")));
   }
 
   @CommandRef(desc = "Prints disk space usage.")
-  public void getDiskSpace() throws IOException, JadbException {
+  public void disk() throws IOException, JadbException {
     console(getResponse(device.executeShell("df")));
   }
 
   @CommandRef(desc = "Prints a list of all the available shell programs.")
-  public void getShellPrograms() throws IOException, JadbException {
+  public void shellPrograms() throws IOException, JadbException {
     console(getResponse(device.executeShell("ls", "/system/bin")));
   }
 
@@ -177,15 +177,14 @@ public class AndroidDeviceCommands {
   @CommandRef(
       desc = "Execute a shell command in the emulator/device instance and then exits the remote shell.",
       params = {"command - A shell command.", "args - Shell commands arguments."})
-  public void executeShell(final String command, final String... args)
-      throws IOException, JadbException {
+  public void shell(final String command, final String... args) throws IOException, JadbException {
     console(getResponse(device.executeShell(command, args)));
   }
 
   @CommandRef(
       desc = "Given the name of a system environment variable,returns its value for this device.",
       params = {"propertye -   The property name"}, ret = "The property value")
-  public String getProp(final String property) throws IOException, JadbException {
+  public String prop(final String property) throws IOException, JadbException {
     return getResponse(device.executeShell("getprop", property));
   }
 

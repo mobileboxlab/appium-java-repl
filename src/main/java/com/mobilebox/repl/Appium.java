@@ -3,6 +3,8 @@ package com.mobilebox.repl;
 import static com.mobilebox.repl.commands.CommandsDoc.printCommands;
 import static com.mobilebox.repl.commands.CommandsDoc.SEPARATOR;
 import static com.mobilebox.repl.misc.Utils.console;
+import static java.lang.System.getProperty;
+
 import javarepl.Main;
 
 import com.mobilebox.repl.commands.AndroidCommands;
@@ -52,23 +54,33 @@ public class Appium {
   }
 
   @CommandRef(desc = "Prints all commands available for Android and iOS.")
-  public static void commands_appium() {
+  public static void appium() {
     printCommands(AppiumCommands.class);
   }
 
   @CommandRef(desc = "Prints all commands available especifc for Android.")
-  public static void commands_android() {
+  public static void android() {
     printCommands(AndroidCommands.class);
   }
 
   @CommandRef(desc = "Prints all commands available for iOS.")
-  public static void commands_ios() {
+  public static void ios() {
     printCommands(IOSCommands.class);
   }
 
   @CommandRef(desc = "Prints all commands available for Android Device.")
-  public static void commands_android_device() {
+  public static void android_device() {
     printCommands(AndroidDeviceCommands.class);
+  }
+
+  @CommandRef(desc = "Prints the user home directory.")
+  public static void user_home() {
+    System.out.println(getProperty("user.home"));
+  }
+
+  @CommandRef(desc = "Prints my name")
+  public static void my_name() {
+    System.out.println("My Name \n it's a joke, a bad one...");
   }
 
 }

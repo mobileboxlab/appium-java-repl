@@ -39,22 +39,40 @@ public class AndroidCommands extends AppiumCommands<AndroidDriver, AndroidElemen
     capabilities.setCapability(NEW_COMMAND_TIMEOUT, timeout);
     capabilities.setCapability(UDID, udid);
     capabilities.setCapability(APP, app);
-    setDriver(new AndroidDriver<>(new URL(server), capabilities));
+    setDriver(new AndroidDriver<AndroidElement>(new URL(server), capabilities));
     setDeviceID(udid);
     setApp(app);
   }
 
   @CommandRef(desc = "Retrieves an AndroidDeviceCommands instance.")
-  public AndroidDeviceCommands getDevice() throws CommandsException {
+  public AndroidDeviceCommands device() throws CommandsException {
     return new AndroidDeviceCommands(getDeviceID());
+  }
+
+  @CommandRef(desc = "Find element by text.",
+      params = {
+          "text -  The visible text displayed in a widget (for example, the text label to launch an app)."},
+      ret = "An AndroidElement.")
+  public AndroidElement text(final String text) {
+    return (AndroidElement) findElement(UISelector.text(text));
   }
 
   @CommandRef(desc = "Find elements by text.",
       params = {
           "text -  The visible text displayed in a widget (for example, the text label to launch an app)."},
       ret = "A list of AndroidElement. This list is empty when no elements are found.")
-  public List<AndroidElement> byText(final String text) {
-    return findElements(UISelector.text(text));
+  public List<AndroidElement> texts(final String text) {
+    return (List<AndroidElement>) findElements(UISelector.text(text));
+  }
+
+  @CommandRef(desc = "Find element by text that contains a given text.",
+      params = {
+          "text -  The visible text displayed in a widget (for example, the text label to launch an app). "
+              + "The text for the element must match exactly with the string in your input argument. "
+              + "Matching is case-sensitive."},
+      ret = "An AndroidElement.")
+  public AndroidElement textContain(final String text) {
+    return (AndroidElement) findElement(UISelector.textContains(text));
   }
 
   @CommandRef(desc = "Find elements by text that contains a given text.",
@@ -63,8 +81,17 @@ public class AndroidCommands extends AppiumCommands<AndroidDriver, AndroidElemen
               + "The text for the element must match exactly with the string in your input argument. "
               + "Matching is case-sensitive."},
       ret = "A list of AndroidElement. This list is empty when no elements are found.")
-  public List<AndroidElement> byTextContains(final String text) {
-    return findElements(UISelector.textContains(text));
+  public List<AndroidElement> textContains(final String text) {
+    return (List<AndroidElement>) findElements(UISelector.textContains(text));
+  }
+
+  @CommandRef(
+      desc = "Find element by an UISelector expression. Chaining the search criteria on 'new UiSelector()'.",
+      params = {
+          "selector - The UISelector expression. E.g: className('android.widget.RelativeLayout').enabled(true).instance(0);"},
+      ret = "An AndroidElement.")
+  public AndroidElement uiSelector(final String selector) {
+    return (AndroidElement) findElement(UISelector.selectorChaining(selector));
   }
 
   @CommandRef(
@@ -72,12 +99,12 @@ public class AndroidCommands extends AppiumCommands<AndroidDriver, AndroidElemen
       params = {
           "selector - The UISelector expression. E.g: className('android.widget.RelativeLayout').enabled(true).instance(0);"},
       ret = "A list of AndroidElement. This list is empty when no elements are found.")
-  public List<AndroidElement> byUISelector(final String selector) {
+  public List<AndroidElement> uiSelectors(final String selector) {
     return findElements(UISelector.selectorChaining(selector));
   }
 
   @CommandRef(desc = "Prints the current activity being run on the mobile device.")
-  public void getActivity() {
+  public void activity() {
     console(getDriver().currentActivity());
   }
 
@@ -97,7 +124,7 @@ public class AndroidCommands extends AppiumCommands<AndroidDriver, AndroidElemen
   };
 
   @CommandRef(desc = "Prints detailed information about the app.")
-  public void getAppInfo() throws CommandsException {
+  public void appInfo() {
     new APKInspector().inspect(getApp()).toConsole();
   };
 
