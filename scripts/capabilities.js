@@ -7,7 +7,7 @@ function main() {
   caps.setCapability("udid", "5526eeb49804");
   caps.setCapability("deviceName", "5526eeb49804");
   caps.setCapability("newCommandTimeout", "900000");
-  caps.setCapability("app", "/home/pierre/Descargas/ApiDemos-debug.apk");
+  caps.setCapability("app", "ApiDemos-debug.apk");
   caps.setCapability("platformName","android");
   caps.setCapability("appActivity","io.appium.android.apis.ApiDemos");
   caps.setCapability("appPackage","io.appium.android.apis");
