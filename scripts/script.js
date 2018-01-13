@@ -64,7 +64,6 @@ function moreinfo(){
   print($.orientation());
   print($.capabilities());
   print($.session());
-  print($.strings());
   print($.source());
   print($.time());
   print($.context());
