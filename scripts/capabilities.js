@@ -4,8 +4,8 @@ function main() {
   var DesiredCapabilities = Java.type("org.openqa.selenium.remote.DesiredCapabilities")
   var caps = new DesiredCapabilities();
   caps.setCapability("appiumServer","http://127.0.0.1:4723/wd/hub");
-  caps.setCapability("udid", "5526eeb49804");
-  caps.setCapability("deviceName", "5526eeb49804");
+  caps.setCapability("udid", "ID");
+  caps.setCapability("deviceName", "NAME");
   caps.setCapability("newCommandTimeout", "900000");
   caps.setCapability("app", "ApiDemos-debug.apk");
   caps.setCapability("platformName","android");
