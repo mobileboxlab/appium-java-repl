@@ -29,6 +29,7 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.mobilebox.repl.Appium;
 import com.mobilebox.repl.config.ConfigCapabilities;
 import com.mobilebox.repl.exceptions.CommandsException;
 
@@ -43,6 +44,7 @@ public abstract class AppiumCommands<T extends AppiumDriver, E extends WebElemen
   private String app;
   private AppiumDriver<E> driver;
   private final String ENGINE_NAME = "nashorn";
+  private boolean logElement = true;
 
   abstract void start(String deviceName, String udid, String app, String server, String timeout)
       throws CommandsException, MalformedURLException;
@@ -147,6 +149,10 @@ public abstract class AppiumCommands<T extends AppiumDriver, E extends WebElemen
   protected void setApp(String app) {
     this.app = app;
   };
+  
+  public void logElement(boolean log){
+    logElement = log;
+  }
 
   @CommandRef(desc = "Terminates the driver instance.")
   public void quit() {
@@ -273,16 +279,18 @@ public abstract class AppiumCommands<T extends AppiumDriver, E extends WebElemen
   }
 
   protected void printElement(E element) {
-    Point location = element.getLocation();
-    Dimension size = element.getSize();
-    console("---> Text: " + element.getText());
-    console("---> TagName: " + element.getTagName());
-    console("---> Enabled: " + element.isEnabled());
-    console("---> Selected: " + element.isSelected());
-    console("---> Displayed: " + element.isDisplayed());
-    console("---> Location: [X=" + location.getX() + " Y=" + location.getY() + "]");
-    console(
-        "---> Size: [Height=" + size.getHeight() + " Width=" + size.getWidth() + "]" + SEPARATOR);
+    if (logElement) {
+      Point location = element.getLocation();
+      Dimension size = element.getSize();
+      console("---> Text: " + element.getText());
+      console("---> TagName: " + element.getTagName());
+      console("---> Enabled: " + element.isEnabled());
+      console("---> Selected: " + element.isSelected());
+      console("---> Displayed: " + element.isDisplayed());
+      console("---> Location: [X=" + location.getX() + " Y=" + location.getY() + "]");
+      console(
+          "---> Size: [Height=" + size.getHeight() + " Width=" + size.getWidth() + "]" + SEPARATOR);
+    }
   }
 
   private void setPlatformName(final String platform, URL urlServer, DesiredCapabilities caps) {
