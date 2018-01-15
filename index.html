@@ -1,865 +1,714 @@
-<html><head>
-    <link rel="icon" href="img/favicon.ico">
-    <meta name="keywords" content="
-,testing,automation,java,repl,webdriver,selenium,mobile,android,ios">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Simple Java REPL for controlling apps through Appium">
-    <meta name="author" content="">
-    <title>Appium Java REPL</title>
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly
-    Theme: http://bootswatch.com/flatly/ -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements
-    and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file://
-    -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head><body id="page-top" class="index">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header page-scroll">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="#page-top" class="navbar-brand">Appium Java REPL</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="hidden">
-              <a href="#page-top"></a>
-            </li>
-            <li class="page-scroll">
-              <a href="#intro">Intro</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <i class="fa fa-caret-down"></i></a>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a href="#gettingStarted">Getting Started</a>
-                </li>
-                <li>
-                  <a href="#androidCommands">Android Commands</a>
-                </li>
-                <li>
-                  <a href="#iosCommands">iOS Commands</a>
-                </li>
-                <li>
-                  <a href="#bothCommands">Android and iOS Commands</a>
-                </li>
-                <li>
-                  <a href="#androidDeviceCommands">Android Device Commands</a>
-                </li>
-                <li>
-                  <a href="#vanilla">Vanilla mode</a>
-                </li>
-              </ul>
-            </li>
-            <li class="page-scroll">
-              <a href="#about">About</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-    <!-- Header -->
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <img class="img-responsive" src="img/console.png" alt="">
-            <div class="intro-text">
-              <span class="name">Appium Java REPL</span>
-              <span class="skills">Simple Java REPL for controlling mobile apps through Appium</span>
-              <div class="col-lg-12 text-center">
-                <br>
-                <p class="hidden-sm hidden-xs text-center">
-                  <img src="img/start.gif">
-                </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </header>
-    <!-- Documentation Section -->
-    <section id="intro">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 id="intro">Introduction</h2>
-            <hr class="bertiente hidden-sm hidden-xs">
-          </div>
-          <div class="col-xs-12" style="height:50px;"></div>
-          <div class="col-lg-12 text-left">
-            <p>
-              <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> is a simple interactive language shell that takes single user input in
-              the form of an expression, evaluates them and return the results to user
-              on the same shell. Many languages and interpreters have a similar mechanism,
-              like Python, Ruby, Lisp, Scheme, etc.</p>
-            <p>Appium REPL is a great place to start experimenting with Appium, there
-              are advantages to using the REPL: it's simple, and should work without
-              any complex installation or configuration.</p>
-            <p>Actually exists some Appium REPL implementations such as:</p>
-            <ul lass="list-unstyled">
-              <li>
-                <a href="https://www.npmjs.com/package/appium-repl">Appium-repl (node)</a>
-              </li>
-              <li>
-                <a href="https://github.com/appium/ruby_console">Appium Ruby Console</a>
-              </li>
-            </ul>
-            <p>Appium Java REPL is built on top of
-              <a href="https://github.com/albertlatacz/java-repl">Java-REPL</a> (by
-              <a href="https://github.com/albertlatacz">Albert Latacz</a>) implementation (you can play with it
-              <a href="http://www.javarepl.com/console.html">online</a>).</p>
-          </div>
-        </div>
-        <div class="docs">
-          <hr>
-          <div class="row">
-            <!-- DOCUMENATION -->
-            <div class="col-lg-12 text-center" id="docs">
-              <h2>Documentation</h2>
-              <hr class="bertiente hidden-sm hidden-xs">
-            </div>
-            <!-- GETTING STARTED -->
-            <div class="col-lg-12 text-left">
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h3 id="gettingStarted">Getting Started</h3>
-              <div class="col-xs-12" style="height:50px;"></div>
-              <p>
-                <a href="https://github.com/mobileboxlab/appium-java-repl/releases">Download</a> the latest version (requires JDK 1.8 or newer) and install
-                <a href="https://github.com/appium/appium">Appium</a>
-              </p>
-            </div>
-            <div class="col-lg-12 text-left">
-              <br>
-              <p>Don't have a
-                <a href="https://www.allacronyms.com/aut/Application_Under_Test">AUT</a>?, don't worry, be happy. There are some pre-compiled test apps available
-                on the
-                <a href="https://github.com/appium/java-client/tree/master/src/test/java/io/appium/java_client">Appium Java-client</a> project.</p>
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h4>Launching The Console</h4>
-              <hr class="highlight">
-              <p>Run
-                <code>java -jar appium-repl-0-1-0.jar</code>this will open the Appium Java REPL
-                console.</p>
-              <p class="hidden-sm hidden-xs text-center">
-                <img src="img/c1.png">
-              </p>
-              <br>
-              <p>Now you can type some Java code and then press Return/Enter. JavaREPL
-                evaluates what you typed and returns the result:</p>
-              <p class="hidden-sm hidden-xs text-center">
-                <img src="img/c2.png">
-              </p>
-              <br>
-              <p>If this doesn't work try to run pointing directly to java executable within
-                JDK, like so:</p>
-              <code>$[PATH_TO_JDK]/bin/java -jar appium-repl-0-1-0.jar</code>
-            </div>
-            <!-- CONSOLE OPTIONS -->
-            <div class="col-lg-12 text-left">
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h4>Console Options</h4>
-              <hr class="highlight">
-              <p>All the console options starts with colon
-                <code>:</code>and everything else is considered as Java expression. Type the
-                command
-                <code>:help</code>in order to get the console options. To exit the interactive
-                session, type
-                <code>:quit</code>followed by the return or enter key.</p>
-              <p>The REPL maintains a history of snippets and commands. You navigate this
-                history to re-enter or edit prior input with the
-                <b>UP</b> arrow.</p>
-            </div>
-            <!-- START SESSION -->
-            <div class="col-lg-12 text-left">
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h4>Start Session</h4>
-              <hr class="highlight">
-              <p>First we'll need to start the Appium server. Open a new terminal a execute:</p>
-              <p>
-                <code>appium --session-override --command-timeout=1200</code>
-              </p>
-              <p>Or we can use the
-                <a href="https://bitbucket.org/appium/appium.app/downloads/">Appium GUI</a>. Just click the Launch button in the top right-hand corner of the window.
-                After clicking it, you should see some debug information in the center
-                console. Assuming there are no errors or exceptions, it should be up ready
-                to receive a session.</p>
-              <p class="hidden-sm hidden-xs text-center">
-                <img src="img/appium.gif">
-              </p>
-              <br>
-            </div>
-            <!-- CONSOLE APPIUM COMMANDS -->
-            <div class="col-lg-12 text-left">
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h4>Console Appium Commands</h4>
-              <hr class="highlight">
-              <p>Appium Java REPL comes with some useful commands at the REPL-prompt: such
-                as: find an element, get source, get current activity, etc.</p>
-              <p>In order to use Appium on the console, we need imports all the static
-                member of
-                <b>Appium</b> class.</p>
-              <p>Type
-                <code>import static com.mobilebox.repl.Appium.*;</code>
-              </p>
-              <p class="hidden-sm hidden-xs text-center">
-                <img src="img/c3.png">
-              </p>
-              <br>
-              <p>Now we can start an Appium session from the console or Appium GUI, after
-                it start you can interact with the AUT.</p>
-              <p>Appium Java REPL come with commands for
-                <a href="#android"> Android</a> and
-                <a href="#ios"> iOS</a> platforms. You can print all commands available for
-                <a href="#both">both</a> platforms through the
-                <code>help()</code>command:</p>
-              <p class="hidden-sm hidden-xs text-center">
-                <img src="img/c5.png">
-              </p>
-              <br>
-            </div>
-            <!-- ANDROID COMMANDS -->
-            <div class="col-lg-12 text-left" id="androidCommands">
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h4>Android Commands</h4>
-              <hr class="highlight">
-              <p>Start an Appium session for an Andorid app</p>
-              <pre class="prettyprint">android.start("device name", "udid", "app path", "appium server url","command
-                timeout")</pre>
-              <table class="table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>deviceName</td>
-                    <td>String</td>
-                    <td>The kind of mobile device or emulator to use</td>
-                  </tr>
-                  <tr>
-                    <td>udid</td>
-                    <td>String</td>
-                    <td>Unique device identifier of the connected physical device</td>
-                  </tr>
-                  <tr>
-                    <td>app</td>
-                    <td>String</td>
-                    <td>The absolute local path or remote http URL to an .apk</td>
-                  </tr>
-                  <tr>
-                    <td>server</td>
-                    <td>String</td>
-                    <td>The Appium server URL</td>
-                  </tr>
-                  <tr>
-                    <td>timeout</td>
-                    <td>String</td>
-                    <td>How long (in seconds) Appium will wait for a new command from the client
-                      before assuming the client quit and ending the session.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <br>
-              <p>Find elements by text.</p>
-              <pre class="prettyprint">android.byText("Text")</pre>
-              <table class="table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Return</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>text</td>
-                    <td>String</td>
-                    <td>The visible text displayed in a widget (for example, the text label to
-                      launch an app).</td>
-                    <td>A list of AndroidElement. This list is empty when no elements are found.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <br>
-              <p>Find elements by text that contains a given text.</p>
-              <pre class="prettyprint">android.byTextContains("Text")</pre>
-              <table class="table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Return</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>text</td>
-                    <td>String</td>
-                    <td>The visible text displayed in a widget (for example, the text label to
-                      launch an app). The text for the element must match exactly with the string
-                      in your input argument. Matching is case-sensitive.</td>
-                    <td>A list of AndroidElement. This list is empty when no elements are found.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <br>
-              <p>Find elements by an UISelector expression. Chaining the search criteria
-                on new UiSelector()</p>
-              <pre class="prettyprint">android.byUISelector("className('android.widget.RelativeLayout').enabled(true).instance(0)")</pre>
-              <table class="table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Return</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>selector</td>
-                    <td>String</td>
-                    <td>The visible text displayed in a widget (for example, the text label to
-                      launch an app). The text for the element must match exactly with the string
-                      in your input argument. Matching is case-sensitive.</td>
-                    <td>A list of AndroidElement. This list is empty when no elements are found.</td>
-                  </tr>
-                </tbody>
-                </table>
-                <br>
-                <p>Prints the current activity being run on the mobile device.</p>
-                <pre class="prettyprint">android.getActivity()</pre>
-                <br>
-                <p>Retrieves an
-                  <a href="#androidDeviceCommands">AndroidDeviceCommands</a> instance.</p>
-                <pre class="prettyprint">android.getDevice()</pre>
-                <table class="table">
-                  <thead class="thead-inverse">
-                    <tr>
-                      <th>Return</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Retrieves an
-                        <a href="#androidDeviceCommands">AndroidDeviceCommands</a> instance.</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-                <p>Open the notification shade, on Android devices.</p>
-                <pre class="prettyprint">android.openNotifications()</pre>
-                <br>
-                <p>Close the app which was provided in the capabilities at session creation.</p>
-                <pre class="prettyprint">android.closeApp()</pre>
-                  <br>
-                  <p>Launch the app which was provided in the capabilities at session creation.</p>
-                  <pre class="prettyprint">android.launchApp()</pre>
-                    <p>Open the notification shade, on Android devices.</p>
-                    <pre class="prettyprint">android.openNotifications()</pre>
-                    <br>
-                    <p>Close the app which was provided in the capabilities at session creation.</p>
-                    <pre class="prettyprint">android.closeApp()</pre>
-                      <br>
-                      <p>Launch the app which was provided in the capabilities at session creation.</p>
-                      <pre class="prettyprint">android.launchApp()</pre>
-                        <p>Prints detailed information about the application under test.</p>
-                        <pre class="prettyprint">android.getAppInfo()</pre>
-                          <br>
-            </div>
-            <!-- IOS COMMANDS -->
-            <div class="col-lg-12 text-left" id="ios">
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h4 id="iosCommands">iOS Commands</h4>
-              <hr class="highlight">
-              <p>Start an Appium session for an iOS app</p>
-              <pre class="prettyprint">ios.start("device name", "udid", "app path", "appium server url","command
-                timeout")</pre>
-              <table class="table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>deviceName</td>
-                    <td>String</td>
-                    <td>The kind of mobile device or emulator to use</td>
-                  </tr>
-                  <tr>
-                    <td>udid</td>
-                    <td>String</td>
-                    <td>Unique device identifier of the connected physical device</td>
-                  </tr>
-                  <tr>
-                    <td>app</td>
-                    <td>String</td>
-                    <td>The absolute local path or remote http URL to an .apk</td>
-                  </tr>
-                  <tr>
-                    <td>server</td>
-                    <td>String</td>
-                    <td>The Appium server URL</td>
-                  </tr>
-                  <tr>
-                    <td>timeout</td>
-                    <td>String</td>
-                    <td>How long (in seconds) Appium will wait for a new command from the client
-                      before assuming the client quit and ending the session.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- Android and iOS COMMANDS -->
-            <div class="col-lg-12 text-left" id="both">
-              <div class="col-xs-12" style="height:50px;"></div>
-              <h4 id="bothCommands">Android and iOS Commands</h4>
-              <hr class="highlight">
-              <p>Start an Appium session from
-                <b>appium.txt</b> file. You can specify the necessary configurations of your
-                app through some capabilities by storing them in a file called
-                <b>${user.home}/appium.txt</b> (this gets resolved by 'user.home' system property).</p>
-              <pre class="prettyprint">android.start() ios.start()</pre>
-                <p>Here's what
-                  <b>appium.txt</b> looks like for Android:</p>
-                <pre class="prettyprint">platform.name=android device.name=S5Mini command.timeout=9000 udid=3204a5a5f0d691efsd
-                  app=/Applications/ApiDemos-debug.apk appium.server=http://127.0.0.1:4723/wd/hub</pre>
-                <p>And here's what
-                  <b>appium.txt</b> looks like for iOS:</p>
-                <pre class="prettyprint">platform.name=ios device.name=iPhoneSimulator command.timeout=9000 app=/path/to/UICatalog.app
-                  appium.server=http://127.0.0.1:4723/wd/hub</pre>
-                <br>
-                <p>Appium Java REPL does support
-                  <b>"hot reload"</b> for appium.txt file, this mean that automatically reload
-                  the appium.txt file if it is modified on the filesystem.</p>
-                <br>
-                <p>Find elements by ID</p>
-                <pre class="prettyprint">android.byId("id") ios.byId("id")</pre>
-                <table class="table">
-                  <thead class="thead-inverse">
-                    <tr>
-                      <th>Parameter</th>
-                      <th>Type</th>
-                      <th>Description</th>
-                      <th>Return</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>id</td>
-                      <td>String</td>
-                      <td>The element id</td>
-                      <td>A list of elements. This list is empty when no elements are found.</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-                <p>Find elements by class name</p>
-                <pre class="prettyprint">android.byClassName("className") ios.byClassName("className")</pre>
-                <table class="table">
-                  <thead class="thead-inverse">
-                    <tr>
-                      <th>Parameter</th>
-                      <th>Type</th>
-                      <th>Description</th>
-                      <th>Return</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>className</td>
-                      <td>String</td>
-                      <td>The class property (for example, 'android.widget.Button')</td>
-                      <td>A list of elements. This list is empty when no elements are found.</td>
-                    </tr>
-                  </tbody>
-                  </table>
-                  <br>
-                  <p>Find elements by Xpath</p>
-                  <pre class="prettyprint">android.byXapth("xpath") ios.byXapth("xpath")</pre>
-                  <table class="table">
-                    <thead class="thead-inverse">
-                      <tr>
-                        <th>Parameter</th>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Return</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>xpath</td>
-                        <td>String</td>
-                        <td>A Xpath expression</td>
-                        <td>A list of elements. This list is empty when no elements are found.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                  <p>Move back</p>
-                  <pre class="prettyprint">android.back() ios.back()</pre>
-                  <br>
-                  <p>Prints the current orientation of a mobile devices desktop.</p>
-                  <pre class="prettyprint">android.getOrientation() ios.getOrientation()</pre>
-                  <br>
-                  <p>Prints the capabilities of the current driver.</p>
-                  <pre class="prettyprint">android.getCapabilities() ios.getCapabilities()</pre>
-                  <br>
-                  <p>Retrieves a XML view of the current screen.</p>
-                  <pre class="prettyprint">android.getSource() ios.getSource()</pre>
-                  <table class="table">
-                    <thead class="thead-inverse">
-                      <tr>
-                        <th>Return</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>A XML view of the current screen.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br>
-                  <p>Terminates the driver instance.</p>
-                  <pre class="prettyprint">android.quit() ios.quit()</pre>
-                  <br>
-                  <p>Prints the ID of this session.</p>
-                  <pre class="prettyprint">android.getSessionId() ios.getSessionId()</pre>
-                  <br>
-                  <p>Prints all defined Strings from an app for the default language.</p>
-                  <pre class="prettyprint">android.getAppStringMap() ios.getAppStringMap()</pre>
-                    <br>
-                    <p>Prints the device date and time for both iOS and Android devices.</p>
-                    <pre class="prettyprint">android.getDeviceTime() ios.getDeviceTime()</pre>
-                      <br>
-                      <p>Hides the keyboard if it is showing.</p>
-                      <pre class="prettyprint">android.hideKeyboard() ios.hideKeyboard()</pre>
-                      <br>
-                      <p>Prints the current context.</p>
-                      <pre class="prettyprint">android.getContext() ios.getContext()</pre>
-                      <br>
-                      <p>Prints the available contexts.</p>
-                      <pre class="prettyprint">android.getContextHandles() ios.getContextHandles()</pre>
-                      <br>
-                      <p>Switch to a new context.</p>
-                      <pre class="prettyprint">android.context("NATIVE_APP") ios.getSource("NATIVE_APP")</pre>
-                      <table class="table">
-                        <thead class="thead-inverse">
-                          <tr>
-                            <th>Parameter</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>context</td>
-                            <td>String</td>
-                            <td>The context name</td>
-                          </tr>
-                        </tbody>
-                        </table>
-			<br>
-                        <p>Prints the session details.</p>
-                        <pre class="prettyprint">android.getSessionDetails() ios.getSessionDetails()</pre>
-                        <br>
-                        <!-- ANDROID DEVICE -->
-                        <div class="col-lg-12 text-left">
-                          <div class="col-xs-12" style="height:50px;"></div>
-                          <h3>Android Device</h3>
-                          <div class="col-xs-12" style="height:50px;"></div>
-                          <p>Appium Java REPL also provides some commands for control an Android device
-                            or emulator from outside of Appium code. With these commands you can takes
-                            screenshots, set brightness, retrieves devices properties, etc. For provide
-                            these functions Appium Java REPL uses an ADB client implemented in pure
-                            Java:
-                            <a href="https://github.com/vidstige/jadb">JADB</a>
-                          </p>
-                          <div class="col-lg-12 text-center">
-                            <br>
-                            <p class="hidden-sm hidden-xs">
-                              <img src="img/device1.gif">
-                            </p>
-                          </div>
-                        </div>
-                        <!-- ANDROID DEVICE COMMANDS -->
-                        <div class="col-lg-12 text-left">
-                          <div class="col-xs-12" style="height:50px;"></div>
-                          <h4 id="androidDeviceCommands">Android Device Commands</h4>
-                          <hr class="highlight">
-                          <p>You can get an instance of an Andorid device:</p>
-                          <pre class="prettyprint">device = andorid.getDevice()</pre>
-                          <br>
-                          <p>Set brightness</p>
-                          <pre class="prettyprint">device.setBrightness(255)</pre>
-                          <table class="table">
-                            <thead class="thead-inverse">
-                              <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>brightness</td>
-                                <td>int</td>
-                                <td>Value into the range [0,255]</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <p>Prints the Android device serial</p>
-                          <pre class="prettyprint">device.getSerial()</pre>
-                          <br>
-                          <p>Sends the KEYCODE_CALL KeyEvent</p>
-                          <pre class="prettyprint">device.call()</pre>
-                          <br>
-                          <p>Sends the KEYCODE_VOLUME_UP KeyEvent</p>
-                          <pre class="prettyprint">device.volumenUp()</pre>
-                          <br>
-                          <p>Sends the KEYCODE_VOLUME_DOWN KeyEvent</p>
-                          <pre class="prettyprint">device.volumenDown()</pre>
-                          <br>
-                          <p>Prints device information related to Dalvik VM.</p>
-                          <pre class="prettyprint">device.getVMInfo()</pre>
-                          <br>
-                          <p>Prints the Android device version</p>
-                          <pre class="prettyprint">device.getVersion()</pre>
-                          <br>
-                          <p>Prints device information related to DHCP</p>
-                          <pre class="prettyprint">device.getDHCPInfo()</pre>
-                          <br>
-                          <p>Prints device information related to GSM</p>
-                          <pre class="prettyprint">device.getGsmInfo()</pre>
-                          <br>
-                          <p>Prints device information related to Net</p>
-                          <pre class="prettyprint">device.getNetInfo()</pre>
-                          <br>
-                          <p>Prints device information related to product</p>
-                          <pre class="prettyprint">device.getProductInfo()</pre>
-                          <br>
-                          <p>Prints device information related to Wifi</p>
-                          <pre class="prettyprint">device.getWifiInfo()</pre>
-                          <br>
-                          <p>Remove a file.</p>
-                          <pre class="prettyprint">device.remove("/path/to/my/file")</pre>
-                          <table class="table">
-                            <thead class="thead-inverse">
-                              <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>filePath</td>
-                                <td>String</td>
-                                <td>The file path to remove.</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <br>
-                          <p>Prints all packages on the device.</p>
-                          <pre class="prettyprint">device.getPackages()</pre>
-                          <br>
-                          <p>Prints battery status.</p>
-                          <pre class="prettyprint">device.getBattery()</pre>
-                          <br>
-                          <p>Prints disk space usage.</p>
-                          <pre class="prettyprint">device.getDiskSpace()</pre>
-                          <br>
-                          <p>Prints a list of all the available shell programs.</p>
-                          <pre class="prettyprint">device.getShellPrograms()</pre>
-                          <br>
-                          <p>Take and save a device screenshot to file.</p>
-                          <pre class="prettyprint">device.remove("/path/to/my/file")</pre>
-                          <table class="table">
-                            <thead class="thead-inverse">
-                              <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>filePath</td>
-                                <td>String</td>
-                                <td>Full path to file</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <br>
-                          <p>Execute a shell command in the emulator/device instance and then exits
-                            the remote shell.</p>
-                          <pre class="prettyprint">device.executeShell("pm", "list", "packages")</pre>
-                          <table class="table">
-                            <thead class="thead-inverse">
-                              <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>command</td>
-                                <td>String</td>
-                                <td>A shell command</td>
-                              </tr>
-                              <tr>
-                                <td>args</td>
-                                <td>String[]</td>
-                                <td>Shell commands arguments</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <br>
-                          <p>Given the name of a system environment variable,returns its value for
-                            this device.</p>
-                          <pre class="prettyprint">device.getProp("property")</pre>
-                          <table class="table">
-                            <thead class="thead-inverse">
-                              <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                                <th>Return</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>property</td>
-                                <td>String</td>
-                                <td>The property name</td>
-                                <td>The property value</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <!-- VANILLA MODE -->
-                        <div class="col-lg-12 text-left">
-                          <div class="col-xs-12" style="height:50px;"></div>
-                          <h3 id="vanilla">Vanilla Mode</h3>
-                          <div class="col-xs-12" style="height:50px;"></div>
-                          <h5>Start a custom session</h5>
-                          <br>
-                          <p>Of course, you can use Appium Java REPL without use the built-in commands
-                            that come with it. This example shows you how to setup the driver and launch
-                            the app under test:</p>
-                          <pre class="prettyprint">import org.openqa.selenium.remote.DesiredCapabilities; import io.appium.java_client.remote.MobileCapabilityType;
-                            import io.appium.java_client.remote.MobilePlatform; import io.appium.java_client.android.AndroidDriver;
-                            import java.net.URL; capabilities = new DesiredCapabilities(); capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,MobilePlatform.ANDROID);
-                            capabilities.setCapability(MobileCapabilityType.APP, "/Applications/ApiDemos-debug.apk");
-                            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);</pre>
-                          <div class="col-lg-12 text-center">
-                            <br>
-                            <p class="hidden-sm hidden-xs">
-                              <img src="img/vanilla.gif">
-                            </p>
-                        </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </section>
-    <!-- Footer -->
-    <footer class="text-center">
-      <div class="footer-above" id="about">
-        <div class="container">
-          <div class="row">
-            <div class="footer-col col-md-4">
-              <h3>Open Source</h3>
-              <p>Would you like to contribute to the project in any way?
-                <a href="https://github.com/mobileboxlab/appium-java-repl/pulls">Submit a pull request</a>
-              </p>
-            </div>
-            <div class="footer-col col-md-4">
-              <h3>Who</h3>
-              <p>Appium Java REPL is developed and maintained by
-                <a href="http://mobileboxlab.com">MobileBox</a>.</p>
-              <p>Site based on
-                <a href="http://startbootstrap.com/">Start Bootstrap</a>.</p>
-            </div>
-            <div class="footer-col col-md-4">
-              <h3>GitHub</h3>
-              <ul class="list-inline">
-                <li>
-                  <a class="github-button" href="https://github.com/mobileboxlab/appium-java-repl/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/mobileboxlab/appium-java-repl/network" data-count-api="/repos/mobileboxlab/appium-java-repl#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork mobileboxlab/appium-java-repl on GitHub">Fork</a>
-                </li>
-                <li>
-                  <a class="github-button" href="https://github.com/mobileboxlab/appium-java-repl/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/mobileboxlab/appium-java-repl#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue mobileboxlab/appium-java-repl on GitHub">Issue</a>
-                </li>
-                <li>
-                  <a class="github-button" href="https://github.com/mobileboxlab/appium-java-repl" data-icon="octicon-star" data-style="mega" data-count-href="/mobileboxlab/appium-java-repl/stargazers" data-count-api="/repos/mobileboxlab/appium-java-repl#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mobileboxlab/appium-java-repl on GitHub">Star</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-below">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12"></div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- Scroll to Top Button (Only visible on small and extra-small screen
-    sizes) -->
-    <div class="scroll-top page-scroll visible-xs visible-sm">
-      <a class="btn btn-primary" href="#page-top">
-         <i class="fa fa-chevron-up"></i>
-         </a>
-    </div>
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="js/freelancer.js"></script>
-    <!-- Github -->
-    <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
-  
+<!DOCTYPE html>
+<html lang="en">
 
-</body></html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Appium Java REPL</title>
+  <meta name="description" content="Simple Java REPL for controlling mobile apps through Appium" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="canonical" href="index.html" />
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+</head>
+
+<body>
+  <div class="navigation">
+    <div class="container">
+      <nav class="navbar header">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+          Appium JAVA REPL
+        </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/mobileboxlab/appium-java-repl" target="blank" class="github-nav"><img src="assets/images/github.png" alt="Github"></a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="top">
+    <div class="container home-header">
+      <img class="logo grow img-responsive" src="assets/images/logo.svg" alt="">
+      <h1>
+          Simple Java REPL for controlling mobile apps through Appium.
+      </h1>
+
+      <p class="btn-top text-center">
+        <a class="btn btn-default" target="blank" href="https://github.com/mobileboxlab/appium-java-repl"><img src="assets/images/github.png" alt="">Java REPL on Github</a>
+      </p>
+
+      <div class="backed">
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container container-2">
+
+<h2 id="get-started">Get Started</h2>
+<h3 id="introduction">Introduction</h3>
+<p><a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> is a simple interactive language shell that takes single user input in the form of an expression, evaluates them and return the results to user on the same shell.
+Many languages and interpreters have a similar mechanism, like Python, Ruby, Lisp, Scheme, etc.</p>
+
+<p>Appium REPL is a great place to start experimenting with Appium, there are advantages to using the REPL: it's simple, and should work without any complex installation or configuration.</p>
+<p>Actually exists some Appium REPL implementations such as:</p>
+    <ul>
+      <li><a href="https://www.npmjs.com/package/appium-repl">Appium-repl (node)</a></li>
+      <li><a href="https://github.com/appium/ruby_console">Appium Ruby Console</a></li>
+    </ul>
+<p>Appium Java REPL is built on top of <a href="https://github.com/albertlatacz/java-repl">Java-REPL</a> (by <a href="https://github.com/albertlatacz">Albert Latacz</a>) implementation (you can play with it <a href="http://www.javarepl.com/console.html">online</a>).</p>
+<h2 id="try-it-out">Try It Out</h2>
+<p><a href="https://github.com/mobileboxlab/appium-java-repl/releases">Download</a> the latest version (requires JDK 1.8 or newer) and install <a href="https://github.com/appium/appium">Appium</a></p>
+<p>Don't have a <a href="https://www.allacronyms.com/aut/Application_Under_Test">AUT</a>?, don't worry, be happy. There are some pre-compiled test apps available on the <a href="https://github.com/appium/java-client/tree/master/src/test/java/io/appium/java_client">Appium Java-client</a>        project.</p>
+
+<h3 id="launching-console">Launching the console</h3>
+<pre><code class="language-shell">java -jar appium-repl-X-X-X.jar
+</code></pre>
+<p>This will open the Appium Java REPL console.</p>
+
+<pre><code class="language-shell">import static com.mobilebox.repl.Appium.*;
+----------------------------
+ :::- Appium Java REPL -:::
+
+Type import static com.mobilebox.repl.Appium.*;
+
+Type <code color="green">help()</code> for more options.
+-----------------------------
+
+Welcome to JavaREPL version null (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_144)
+Type expression to evaluate, :help for more options or press tab to auto-complete.
+Connected to local instance at http://localhost:45800
+<b>java></b>
+</code></pre>
+
+<p>Now you can type some Java code and then press Return/Enter. JavaREPL evaluates what you typed and returns the result:</p>
+<p>
+<pre><code class="language-shell"><b>java></b> System.out.println("Ireneo Funes")
+Ireneo Funes
+<b>java></b>
+</code></pre>
+</p>
+
+<p>If this doesn't work try to run pointing directly to java executable within <b>JDK</b>, like so:</p>
+
+<pre><code class="language-shell">$[PATH_TO_JDK]/bin/java -jar appium-repl-X-X-X.jar
+</code></pre>
+
+<h3 id="console-options">Console options</h3>
+<p>All the console options starts with colon <code>:</code> and everything else is considered as Java expression. Type the command <code>:help</code> in order to get the console options. To exit the interactive session, type <code>:quit</code> followed
+by the return or enter key.</p>
+<h3 id="start-session">Start sessions</h3>
+<p>First we'll need to start the Appium server. Open a new terminal a execute:</p>
+<pre><code class="language-shell">appium --session-override --command-timeout=1200
+</code></pre>
+
+<p>Or we can use the <a href="https://github.com/appium/appium-desktop">Appium GUI</a>. Just click the Launch button in the top right-hand corner of the window. After clicking it, you should see some debug information in the center console. Assuming
+there are no errors or exceptions, it should be up ready to receive a session.</p>
+
+<h3 id="console-appium-commands">Console Appium commands</h3>
+<p>Appium Java REPL comes with some useful commands at the REPL-prompt: such as: find an element, get source, get current activity, etc.</p>
+<p>In order to use Appium on the console, we need imports all the static member of Appium class. Type:</p>
+<pre><code class="language-shell">import static com.mobilebox.repl.Appium.*;
+</code></pre>
+
+<p>Now we can start an Appium session from the console or Appium GUI, after it start you can interact with the AUT.</p>
+<p>Appium Java REPL come with commands for Android and iOS platforms. You can print all commands available for both platforms through the <code>help()</code> command:</p>
+<pre><code class="language-shell">help()
+------------------------------------
+::-  Available Commands for Appium  -::
+------------------------------------
+
+---> Command: user_home
+---> Description: Prints the user home directory.
+---> Parameters: []
+---> Return:
+
+---> Command: my_name
+---> Description: Prints my name
+---> Parameters: []
+---> Return:
+
+---> Command: ios
+---> Description: Prints all commands available for iOS.
+---> Parameters: []
+---> Return:
+
+---> Command: android
+---> Description: Prints all commands available especifc for Android.
+---> Parameters: []
+---> Return:
+
+---> Command: appium
+---> Description: Prints all commands available for Android and iOS.
+---> Parameters: []
+---> Return:
+
+---> Command: android_device
+---> Description: Prints all commands available for Android Device.
+---> Parameters: []
+---> Return:
+
+---> Command: exit
+---> Description: Quit Appium REPL
+---> Parameters: []
+---> Return:
+
+---> Command: help
+---> Description: Prints this help.
+---> Parameters: []
+---> Return:
+</code></pre>
+
+<h2 id="ios-commands">Android and iOS commands</h2>
+<h3>start</h3>
+<p>Start an Appium session from <b>appium.txt</b> file. You can specify the necessary configurations of your app through some capabilities by storing them in a file called <b>${user.home}/appium.txt</b> (this gets resolved by 'user.home' system property, you can use the <code>user_home()</code> to get the user home directory):</p>
+<pre><code class="language-shell">android.start()
+ios.start
+</code></pre>
+<p>Here's what <b>appium.txt</b> looks like for Android:</p>
+<pre><code class="language-ini">platform.name=android
+device.name=S5Mini
+command.timeout=9000
+udid=3204a5a5f0d691efsd
+app=/Applications/ApiDemos-debug.apk
+appium.server=http://127.0.0.1:4723/wd/hub
+</code></pre>
+<p>Appium Java REPL does support <b>"hot reload"</b> for <b>appium.txt</b> file, this mean that automatically reload the <b>appium.txt</b> file if it is modified on the filesystem.</p>
+
+<h3>id</h3>
+<p>Find element by ID:</p>
+<pre><code class="language-javascript">android.id("id")
+ios.id("id")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>id:</b> The element id.</code>
+<br>Returns an <code>AndroidElement</code></p>
+<hr/>
+
+<h3>ids</h3>
+<p>Find elements by ID:</p>
+<pre><code class="language-javascript">android.ids("id")
+ios.ids("id")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>id:</b> The element id.</code>
+<br>Returns a list of <code>AndroidElement</code>. This list is empty when no elements are found.</p>
+<hr/>
+
+<h3>className</h3>
+<p>Find element by class name:</p>
+<pre><code class="language-javascript">android.className("className")
+ios.className("className")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>id:</b> The element id.</code>
+<br>Returns an <code>AndroidElement</code></p>
+<hr/>
+
+<h3>classNames</h3>
+<p>Find elements by class name:</p>
+<pre><code class="language-javascript">android.classNames("className")
+ios.classNames("className")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>id:</b> The element id.</code>
+<br>Returns a list of <code>AndroidElement</code>. This list is empty when no elements are found.</p>
+<hr/>
+
+<h3>xpath</h3>
+<p>Find element by xpath:</p>
+<pre><code class="language-javascript">android.xpath("xpath")
+ios.xpath("xpath")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>xpath:</b> A Xpath expression</code>
+<br>Returns an <code>AndroidElement</code></p>
+<hr/>
+
+<h3>xpaths</h3>
+<p>Find elements by xpath:</p>
+<pre><code class="language-javascript">android.xpaths("xpath")
+ios.xpaths("xpath")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>xpath:</b> A Xpath expression</code>
+<br>Returns a list of <code>AndroidElement</code>. This list is empty when no elements are found.</p>
+<hr/>
+
+<h3>back</h3>
+<p>Move back</a>:</p>
+<pre><code class="language-javascript">android.back()
+ios.back()
+</code></pre>
+<hr/>
+
+<h3>orientation</h3>
+<p>Prints the current orientation of a mobile devices desktop</a>:</p>
+<pre><code class="language-javascript">android.orientation()
+ios.orientation()
+</code></pre>
+<hr/>
+
+<h3>capabilities</h3>
+<p>Prints the capabilities of the current driver</a>:</p>
+<pre><code class="language-javascript">android.capabilities()
+ios.capabilities()
+</code></pre>
+<hr/>
+
+<h3>source</h3>
+<p>Retrieves a XML view of the current screen</a>:</p>
+<pre><code class="language-javascript">android.source()
+ios.source()
+</code></pre>
+<hr/>
+
+<h3>session</h3>
+<p>Prints the ID of this session</a>:</p>
+<pre><code class="language-javascript">android.session()
+ios.session()
+</code></pre>
+<hr/>
+
+<h3>strings</h3>
+<p>Prints all defined Strings from an app for the default language</a>:</p>
+<pre><code class="language-javascript">android.strings()
+ios.strings()
+</code></pre>
+<hr/>
+
+<h3>time</h3>
+<p>Prints the device date and time for both iOS and Android devices</a>:</p>
+<pre><code class="language-javascript">android.time()
+ios.time()
+</code></pre>
+<hr/>
+
+<h3>context</h3>
+<p>Prints the current context</a>:</p>
+<pre><code class="language-javascript">android.context()
+ios.context()
+</code></pre>
+<hr/>
+
+<h3>contextHandles</h3>
+<p>Prints the available contexts</a>:</p>
+<pre><code class="language-javascript">android.contextHandles()
+ios.contextHandles()
+</code></pre>
+<hr/>
+
+<h3>context</h3>
+<p>Switch to a new context:</p>
+<pre><code class="language-javascript">android.context("NATIVE_APP")
+ios.context("NATIVE_APP")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>context:</b> The context name</code>
+<hr/>
+
+<h3>hideKeyboard</h3>
+<p>Hides the keyboard if it is showing</a>:</p>
+<pre><code class="language-javascript">android.hideKeyboard()
+ios.hideKeyboard()
+</code></pre>
+<hr/>
+
+<h2 id="android-commands">Android commands</h2>
+<h3>start</h3>
+<p>Start an Appium session for an Andorid app</a>:</p>
+
+<pre><code class="language-javascript">android.start("device name", "udid", "app path", "appium server url","command timeout")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>deviceName:</b> The kind of mobile device or emulator to use</p>
+<p><b>udid:</b> Unique device identifier of the connected physical device </p>
+<p><b>app:</b> The absolute local path or remote http URL to an .apk</p>
+<p><b>server:</b> The Appium server URL</p>
+<p><b>timeout:</b> How long (in seconds) Appium will wait for a new command from the client before assuming the client quit and ending the session.</p>
+<hr/>
+
+<h3>text</h3>
+<p>Find element by text</a>:</p>
+<pre><code class="language-javascript">android.text("My Text")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>text:</b> The visible text displayed in a widget (for example, the text label to launch an app).
+<br>Returns an <code>AndroidElement</code></p>
+<hr/>
+
+<h3>texts</h3>
+<p>Find elements by text</a>:</p>
+<pre><code class="language-javascript">android.texts("My Text")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>text:</b> The visible text displayed in a widget (for example, the text label to launch an app).
+<br>Returns a list of <code>AndroidElement</code>. This list is empty when no elements are found.</p>
+<hr/>
+
+<h3>textContain</h3>
+<p>Find element by text that contains a given text</a>:</p>
+<pre><code class="language-javascript">android.textContain("My Text")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>text:</b> The visible text displayed in a widget (for example, the text label to launch an app). The text for the element must match exactly with the string in your input argument. Matching is case-sensitive.
+<br>Returns an <code>AndroidElement</code></p>
+<hr/>
+
+<h3>textContains</h3>
+<p>Find elements by text that contains a given text</a>:</p>
+<pre><code class="language-javascript">android.textContains("My Text")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>text:</b> The visible text displayed in a widget (for example, the text label to launch an app). The text for the element must match exactly with the string in your input argument. Matching is case-sensitive.
+<br>Returns a list of <code>AndroidElement</code>. This list is empty when no elements are found.</p>
+<hr/>
+
+<h3>textContains</h3>
+<p>Find element by an UISelector expression. Chaining the search criteria on 'new UiSelector()'</a>:</p>
+<pre><code class="language-javascript">android.uiSelector("className('android.widget.RelativeLayout').enabled(true).instance(0);")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>selector:</b> The UISelector expression. E.g: <code>className('android.widget.RelativeLayout').enabled(true).instance(0);</code>
+<br>Returns an <code>AndroidElement</code></p>
+<hr/>
+
+<h3>uiSelector</h3>
+<p>Find element by an UISelector expression. Chaining the search criteria on 'new UiSelector()'</a>:</p>
+<pre><code class="language-javascript">android.uiSelector("className('android.widget.RelativeLayout').enabled(true).instance(0);")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>selector:</b> The UISelector expression. E.g: <code>className('android.widget.RelativeLayout').enabled(true).instance(0);</code>
+<br>Returns an <code>AndroidElement</code></p>
+<hr/>
+
+<h3>uiSelectors</h3>
+<p>Find elements by an UISelector expression. Chaining the search criteria on 'new UiSelector()'</a>:</p>
+<pre><code class="language-javascript">android.uiSelector("className('android.widget.RelativeLayout').enabled(true).instance(0);")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>selector:</b> The UISelector expression. E.g: <code>className('android.widget.RelativeLayout').enabled(true).instance(0);</code>
+<br>Returns a list of <code>AndroidElement</code>. This list is empty when no elements are found.</p>
+<hr/>
+
+<h3>activity</h3>
+<p>Prints the current activity being run on the mobile device</a>:</p>
+<pre><code class="language-javascript">android.activity()</code></pre>
+<hr/>
+
+<h3>openNotifications</h3>
+<p>Open the notification shade, on Android devices</a>:</p>
+<pre><code class="language-javascript">android.openNotifications()</code></pre>
+<hr/>
+
+<h3>closeApp</h3>
+<p>Close the app which was provided in the capabilities at session creation</a>:</p>
+<pre><code class="language-javascript">android.closeApp()</code></pre>
+<hr/>
+
+<h3>launchApp</h3>
+<p>Launch the app which was provided in the capabilities at session creation</a>:</p>
+<pre><code class="language-javascript">android.launchApp()</code></pre>
+<hr/>
+
+<h3>appInfo</h3>
+<p>Prints detailed information about the app</a>:</p>
+<pre><code class="language-javascript">android.appInfo()</code></pre>
+<hr/>
+
+
+<h2 id="android-device-commands">Android Device commands</h2>
+<p>Appium Java REPL also provides some commands for control an Android device or emulator from outside of Appium code. With these commands you can takes screenshots, set brightness, retrieves devices properties, etc. For provide these functions Appium Java REPL uses an ADB client implemented in pure Java: <a href="https://github.com/vidstige/jadb">JADB</a></p>
+
+<h3>device</h3>
+<p>You can get an instance of an Andorid device:</p>
+<pre><code class="language-javascript">android.device()</code></pre>
+<br>Returns an <code>AndroidDeviceCommands</code></p>
+<hr/>
+
+<h3>brightness</h3>
+<p>Set brightness:</p>
+<pre><code class="language-javascript">android.brightness(255)</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>brightness:</b> Value into the range [0,255]</b></p>
+<hr/>
+
+<h3>serial</h3>
+<p>Prints the Android device serial:</p>
+<pre><code class="language-javascript">android.serial()</code></pre>
+<hr/>
+
+<h3>call</h3>
+<p>Sends the KEYCODE_CALL KeyEvent:</p>
+<pre><code class="language-javascript">android.call()</code></pre>
+<hr/>
+
+<h3>volumenUp</h3>
+<p>Sends the KEYCODE_VOLUME_UP KeyEvent:</p>
+<pre><code class="language-javascript">android.volumenUp()</code></pre>
+<hr/>
+
+<h3>volumenDown</h3>
+<p>Sends the KEYCODE_VOLUME_DOWN KeyEvent:</p>
+<pre><code class="language-javascript">android.volumenDown()</code></pre>
+<hr/>
+
+<h3>version</h3>
+<p>Prints the device Android version:</p>
+<pre><code class="language-javascript">android.version()</code></pre>
+<hr/>
+
+<h3>vm</h3>
+<p>Prints device information related to Dalvik VM:</p>
+<pre><code class="language-javascript">android.vm()</code></pre>
+<hr/>
+
+<h3>dhcp</h3>
+<p>Prints device information related to DHCP:</p>
+<pre><code class="language-javascript">android.dhcp()</code></pre>
+<hr/>
+
+<h3>gsm</h3>
+<p>Prints device information related to GSM:</p>
+<pre><code class="language-javascript">android.gsm()</code></pre>
+<hr/>
+
+<h3>productInfo</h3>
+<p>Prints device information related to product:</p>
+<pre><code class="language-javascript">android.productInfo()</code></pre>
+<hr/>
+
+<h3>remove</h3>
+<p>Remove a file:</p>
+<pre><code class="language-javascript">android.remove("file path")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>filePath:</b> The file path to remove</b></p>
+<hr/>
+
+<h3>packages</h3>
+<p>Prints all packages on the device:</p>
+<pre><code class="language-javascript">android.packages()</code></pre>
+<hr/>
+
+<h3>battery</h3>
+<p>Prints battery status:</p>
+<pre><code class="language-javascript">android.battery()</code></pre>
+<hr/>
+
+<h3>disk</h3>
+<p>Prints disk space usage:</p>
+<pre><code class="language-javascript">android.disk()</code></pre>
+<hr/>
+
+<h3>shellPrograms</h3>
+<p>Prints a list of all the available shell programs:</p>
+<pre><code class="language-javascript">android.shellPrograms()</code></pre>
+<hr/>
+
+<h3>screenshot</h3>
+<p>Take and save a device screenshot to file:</p>
+<pre><code class="language-javascript">android.screenshot("file path")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>filePath:</b> Full path to file</b></p>
+<hr/>
+
+<h3>shell</h3>
+<p>Execute a shell command in the emulator/device instance and then exits the remote shell:</p>
+<pre><code class="language-javascript">android.executeShell("pm", "list", "packages")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>command:</b> A shell command</b></p>
+<p><b>args:</b> Shell commands arguments</b></p>
+<hr/>
+
+<h3>prop</h3>
+<p>Given the name of a system environment variable,returns its value for this device:</p>
+<pre><code class="language-javascript">android.prop("property")</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>property:</b> The property name</b></p>
+<hr/>
+
+
+<h2 id="ios-commands">iOS commands</h2>
+<h3>start</h3>
+<p>Start an Appium session for an iOS app</a>:</p>
+
+<pre><code class="language-javascript">ios.start("device name", "udid", "app path", "appium server url","command timeout")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>deviceName:</b> The kind of mobile device or emulator to use</p>
+<p><b>udid:</b> Unique device identifier of the connected physical device </p>
+<p><b>app:</b> The absolute local path or remote http URL to an .ipa (or .app for simulators)</p>
+<p><b>server:</b> The Appium server URL</p>
+<p><b>timeout:</b> How long (in seconds) Appium will wait for a new command from the client before assuming the client quit and ending the session.</p>
+<hr/>
+
+<h2 id="scripting">Scripting</h2>
+<p>Since the <a href="https://github.com/mobileboxlab/appium-java-repl/releases/tag/v1.0.0">v1.0.0</a> version, Appium Java REPL has a few functionalities in which scripts can be used.  Appium Java REPL use <a href="http://www.oracle.com/technetwork/articles/java/jf14-nashorn-2126515.html">Nashorn Javascript Engine</a> for scripting.</p>
+<p>Appium Java REPL exposes objects that we can use in our scripts. Let's start by briefly looking at what type of information we are allowed to use in our scripts.</p>
+
+<h3>Commands available during script execution</h3>
+<p>During different operations, Appium Java REPL allows us to use different commands in our scripts. To develop a script that fits our use case, we should be familiar with those commands.</p>
+
+<h3>Start a session with a custom <code>DesiredCapabilities</code></h3>
+<p>Start a new Appium session given <b>Nashorn</b> script file with <code>DesiredCapabilities</code>:</p>
+<pre><code class="language-javascript">android.start("capabilities.js")
+ios.start("capabilities.js")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>filePath:</b> The script full path</p>
+
+<p>Here's what <a href="https://github.com/mobileboxlab/appium-java-repl/blob/master/scripts/capabilities.js">capabilities.js</a> looks like for Android:</p>
+<pre><code class="language-javascript">//The main method providing an entry point for the Appium JAVA REPL.
+function main() {
+  var DesiredCapabilities = Java.type("org.openqa.selenium.remote.DesiredCapabilities")
+  var caps = new DesiredCapabilities();
+  caps.setCapability("appiumServer","http://127.0.0.1:4723/wd/hub");
+  caps.setCapability("udid", "ID");
+  caps.setCapability("deviceName", "NAME");
+  caps.setCapability("newCommandTimeout", "900000");
+  caps.setCapability("app", "ApiDemos-debug.apk");
+  caps.setCapability("platformName","android");
+  caps.setCapability("appActivity","io.appium.android.apis.ApiDemos");
+  caps.setCapability("appPackage","io.appium.android.apis");
+  return caps;
+}
+</code></pre>
+
+<h3>Interact with the application under test</h3>
+<p>You can execute a nashorn script that use some of the Appium JAVA REPL commands:</p>
+<pre><code class="language-javascript">android.run("script.js")
+ios.run("script.js")
+</code></pre>
+<p><b>Parameters description</b></p>
+<hr/>
+<p><b>filePath:</b> The script full path</p>
+
+<p>Here's what <a href="https://github.com/mobileboxlab/appium-java-repl/blob/master/scripts/script.js">script.js</a> looks like:</p>
+<pre><code class="language-javascript">//The REPL object.
+var $;
+
+//The main method providing an entry point for the Appium JAVA REPL scripting capabilities.
+function main(repl){
+    $ = repl;
+    iteration();
+    locators();
+    appInfo();
+    moreinfo();
+    deviceActions();
+}
+
+//Access to REPL commands.
+function iteration(){
+  var elements = $.ids("android:id/text1");
+  for each (element in elements) {
+    element.click();
+    $.back();
+  }
+}
+
+//Some device actions through JADB.
+function deviceActions(){
+  var Device = $.device();
+  Device.brightness(100);
+  Device.call();
+  Device.volumenUp();
+  Device.volumenDown();
+
+  print(Device.version());
+  print(Device.vm());
+  print(Device.dhcp());
+  print(Device.gsm());
+  print(Device.net());
+}
+
+function locators(){
+  print($.className("android.widget.TextView").getText());
+  print($.id("android:id/text1").getText());
+  print($.xpath('//*[@text="NFC"]').getText());
+
+  //List
+  print($.ids("android:id/text1").size());
+  print($.classNames("android.widget.TextView").size());
+  print($.xpaths('//*[@text="NFC"]').size());
+
+  //UISelector
+  print($.text("App"));
+  print($.texts("App").size());
+  print($.textContain("Te"));
+  print($.textContains("Te").size());
+}
+
+//Application under test info through APKInspector.
+function appInfo(){
+  print($.appInfo());
+}
+
+//Some Appium commands.
+function moreinfo(){
+  print($.activity());
+  print($.orientation());
+  print($.capabilities());
+  print($.session());
+  print($.source());
+  print($.time());
+  print($.context());
+  print($.contextHandles());
+  print($.sessionDetails());
+}
+</code></pre>
+
+<h2 id="vanilla-mode">Vanilla mode</h2>
+<h3>Start a custom session</h3>
+<p>Of course, you can use Appium Java REPL without use the built-in commands that come with it. This example shows you how to setup the driver and launch the app under test:</p>
+<pre><code class="language-javascript">import org.openqa.selenium.remote.DesiredCapabilities;
+import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.remote.MobilePlatform;
+import io.appium.java_client.android.AndroidDriver;
+import java.net.URL;
+
+capabilities = new DesiredCapabilities();
+capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,MobilePlatform.ANDROID);
+capabilities.setCapability(MobileCapabilityType.APP, "/Applications/ApiDemos-debug.apk");
+driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+</code></pre>
+
+
+
+
+  </div>
+</div>
+
+  <script src="assets/js/prism.js"></script>
+
+  <div class="footer">
+    <div class="container text-center">
+      <a href="index.html" target="blank"><img class="grow" src="assets/images/logo.svg" alt="Sinon.JS"></a>
+      <p>Appium Java REPL is developed and maintained by <b><a target="blank" href="http://mobileboxlab.com/es/mobilebox-inicio/">Mobilebox</a></b> team.</p>
+      <p>Would you like to contribute to the project in any way? <b><a href="https://github.com/mobileboxlab/appium-java-repl/pulls">Submit a pull request.</a></b></p>
+      <p>Released under the <b><a href="https://github.com/mobileboxlab/appium-java-repl/blob/master/LICENSE">MIT license</a></b>.</p>
+      <p>We steal the page style from <b><a href="http://sinonjs.org/">Sinon.JS</a></b> project.</p>
+      <p><b>Copydown 2018</b></p>
+    </div>
+  </div>
+
+</body>
+
+</html>
