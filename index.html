@@ -433,13 +433,13 @@ ios.hideKeyboard()
 
 <h3>device</h3>
 <p>You can get an instance of an Andorid device:</p>
-<pre><code class="language-javascript">android.device()</code></pre>
+<pre><code class="language-javascript">device = android.device()</code></pre>
 <br>Returns an <code>AndroidDeviceCommands</code></p>
 <hr/>
 
 <h3>brightness</h3>
 <p>Set brightness:</p>
-<pre><code class="language-javascript">android.brightness(255)</code></pre>
+<pre><code class="language-javascript">device.brightness(255)</code></pre>
 <p><b>Parameters description</b></p>
 <hr/>
 <p><b>brightness:</b> Value into the range [0,255]</b></p>
@@ -447,52 +447,52 @@ ios.hideKeyboard()
 
 <h3>serial</h3>
 <p>Prints the Android device serial:</p>
-<pre><code class="language-javascript">android.serial()</code></pre>
+<pre><code class="language-javascript">device.serial()</code></pre>
 <hr/>
 
 <h3>call</h3>
 <p>Sends the KEYCODE_CALL KeyEvent:</p>
-<pre><code class="language-javascript">android.call()</code></pre>
+<pre><code class="language-javascript">device.call()</code></pre>
 <hr/>
 
 <h3>volumenUp</h3>
 <p>Sends the KEYCODE_VOLUME_UP KeyEvent:</p>
-<pre><code class="language-javascript">android.volumenUp()</code></pre>
+<pre><code class="language-javascript">device.volumenUp()</code></pre>
 <hr/>
 
 <h3>volumenDown</h3>
 <p>Sends the KEYCODE_VOLUME_DOWN KeyEvent:</p>
-<pre><code class="language-javascript">android.volumenDown()</code></pre>
+<pre><code class="language-javascript">device.volumenDown()</code></pre>
 <hr/>
 
 <h3>version</h3>
 <p>Prints the device Android version:</p>
-<pre><code class="language-javascript">android.version()</code></pre>
+<pre><code class="language-javascript">device.version()</code></pre>
 <hr/>
 
 <h3>vm</h3>
 <p>Prints device information related to Dalvik VM:</p>
-<pre><code class="language-javascript">android.vm()</code></pre>
+<pre><code class="language-javascript">device.vm()</code></pre>
 <hr/>
 
 <h3>dhcp</h3>
 <p>Prints device information related to DHCP:</p>
-<pre><code class="language-javascript">android.dhcp()</code></pre>
+<pre><code class="language-javascript">device.dhcp()</code></pre>
 <hr/>
 
 <h3>gsm</h3>
 <p>Prints device information related to GSM:</p>
-<pre><code class="language-javascript">android.gsm()</code></pre>
+<pre><code class="language-javascript">device.gsm()</code></pre>
 <hr/>
 
 <h3>productInfo</h3>
 <p>Prints device information related to product:</p>
-<pre><code class="language-javascript">android.productInfo()</code></pre>
+<pre><code class="language-javascript">device.productInfo()</code></pre>
 <hr/>
 
 <h3>remove</h3>
 <p>Remove a file:</p>
-<pre><code class="language-javascript">android.remove("file path")</code></pre>
+<pre><code class="language-javascript">device.remove("file path")</code></pre>
 <p><b>Parameters description</b></p>
 <hr/>
 <p><b>filePath:</b> The file path to remove</b></p>
@@ -500,27 +500,27 @@ ios.hideKeyboard()
 
 <h3>packages</h3>
 <p>Prints all packages on the device:</p>
-<pre><code class="language-javascript">android.packages()</code></pre>
+<pre><code class="language-javascript">device.packages()</code></pre>
 <hr/>
 
 <h3>battery</h3>
 <p>Prints battery status:</p>
-<pre><code class="language-javascript">android.battery()</code></pre>
+<pre><code class="language-javascript">device.battery()</code></pre>
 <hr/>
 
 <h3>disk</h3>
 <p>Prints disk space usage:</p>
-<pre><code class="language-javascript">android.disk()</code></pre>
+<pre><code class="language-javascript">device.disk()</code></pre>
 <hr/>
 
 <h3>shellPrograms</h3>
 <p>Prints a list of all the available shell programs:</p>
-<pre><code class="language-javascript">android.shellPrograms()</code></pre>
+<pre><code class="language-javascript">device.shellPrograms()</code></pre>
 <hr/>
 
 <h3>screenshot</h3>
 <p>Take and save a device screenshot to file:</p>
-<pre><code class="language-javascript">android.screenshot("file path")</code></pre>
+<pre><code class="language-javascript">device.screenshot("file path")</code></pre>
 <p><b>Parameters description</b></p>
 <hr/>
 <p><b>filePath:</b> Full path to file</b></p>
@@ -528,7 +528,7 @@ ios.hideKeyboard()
 
 <h3>shell</h3>
 <p>Execute a shell command in the emulator/device instance and then exits the remote shell:</p>
-<pre><code class="language-javascript">android.executeShell("pm", "list", "packages")</code></pre>
+<pre><code class="language-javascript">device.executeShell("pm", "list", "packages")</code></pre>
 <p><b>Parameters description</b></p>
 <hr/>
 <p><b>command:</b> A shell command</b></p>
@@ -537,8 +537,9 @@ ios.hideKeyboard()
 
 <h3>prop</h3>
 <p>Given the name of a system environment variable,returns its value for this device:</p>
-<pre><code class="language-javascript">android.prop("property")</code></pre>
+<pre><code class="language-javascript">device.prop("property")</code></pre>
 <p><b>Parameters description</b></p>
+
 <hr/>
 <p><b>property:</b> The property name</b></p>
 <hr/>
