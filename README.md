@@ -10,3 +10,11 @@ Simple Java REPL for controlling mobile apps through Appium.
 
 
 https://mobileboxlab.github.io/appium-java-repl/
+
+
+## Contribution
+
+Any ideas are welcome. Feel free to submit any issues or pull requests.
+
+---
+**Appium Java REPL** is developed and maintained by [Mobilebox](http://mobileboxlab.com) team.
